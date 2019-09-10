@@ -14,7 +14,7 @@ class HasExceptionListener
 {
     public function handle(HasExceptionEvent $event)
     {
-        if (!config('notification.lara_exception_notify.enable')) {
+        if (!config('notification.exception_notifier.enable')) {
             return;
         }
 
@@ -24,10 +24,10 @@ class HasExceptionListener
 
         $notify = new HasExceptionNotification($event);
 
-        if (!config('notification.lara_exception_notify.slack_web_hook_url')) {
-            throw new Exception('Can not find config "notification.lara_exception_notify.slack_web_hook_url" information');
+        if (!config('notification.exception_notifier.slack_web_hook_url')) {
+            throw new Exception('Can not find config "notification.exception_notifier.slack_web_hook_url" information');
         }
 
-        Notification::route('slack', config('notification.lara_exception_notify.slack_web_hook_url'))->notify($notify);
+        Notification::route('slack', config('notification.exception_notifier.slack_web_hook_url'))->notify($notify);
     }
 }

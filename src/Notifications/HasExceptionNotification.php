@@ -21,8 +21,8 @@ class HasExceptionNotification extends Notification
 
     public function via($notifiable)
     {
-        if (config('notification.lara_exception_notify.channel')) {
-            return config('notification.lara_exception_notify.channel');
+        if (config('notification.exception_notifier.channel')) {
+            return config('notification.exception_notifier.channel');
         }
 
         return ['slack'];

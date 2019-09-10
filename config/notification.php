@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'lara_exception_notify' => [
+    'exception_notifier' => [
         // allow true or false
         // true is enable notify when have exception
         // false is disable notify
