@@ -8,6 +8,7 @@ return [
         'enable' => true,
 
         // The channel you want to nofity
+        // Now, support only slack :D
         'channel' => ['slack'],
 
         // Your slack web hook

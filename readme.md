@@ -34,6 +34,7 @@ return [
         'enable' => true,
 
         // The channel you want to nofity
+        // Now, support only slack :D
         'channel' => ['slack'],
 
         // Your slack web hook
@@ -110,7 +111,6 @@ class MyController extends Controller
             // noti
             // throw $e; # Don't use, because you will be received duplicate message
             // no throw # The laravel will never log
-
         }
     }
 }
