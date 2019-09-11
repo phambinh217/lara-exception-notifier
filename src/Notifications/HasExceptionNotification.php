@@ -31,19 +31,20 @@ class HasExceptionNotification extends Notification
     public function toSlack($notifiable)
     {
         $notification = (new SlackMessage)
-                ->error()
-                ->content($this->event->exception->getMessage())
-                ->attachment(function ($attachment) {
-                    $attachment->title(get_class($this->event->exception))
-                        ->content('File: ' . $this->event->exception->getFile() . ' on line' . $this->event->exception->getLine());
-                });
+            ->error()
+            ->content($this->event->exception->getMessage())
+            ->attachment(function ($attachment) {
+                $attachment->title(get_class($this->event->exception))
+                    ->content('File: ' . $this->event->exception->getFile() . ' on line' . $this->event->exception->getLine());
+            });
 
         if ($this->event->metas && is_array($this->event->metas)) {
             $notification->attachment(function ($attachment) {
-                $attachment->title('Metas');
-                foreach ($this->event->metas as $title => $message) {
-                    $attachment->content("$title: $message");
+                $contents = [];
+                foreach ($this->event->metas as $name => $value) {
+                    $contents[] = "$name: $value";
                 }
+                $attachment->title('Metas')->content(implode("\n", $contents));
             });
         }
 
